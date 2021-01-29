@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { resolve } from 'dns';
 
 @Injectable({
   providedIn: 'root'
@@ -6,8 +7,15 @@ import { Injectable } from '@angular/core';
 export class TitleService {
   title:string = 'Service'
   constructor() {
-    setTimeout(()=>{
-      this.title="New Service"
-    }, 3000)
-   }
+    const titlePromise = new Promise(resolve=>{
+      setTimeout(()=>{
+        resolve("new Title")
+      }, 3000)
+    })
+    titlePromise.then((value:string)=>{
+      this.title = value;
+    })
+    }
+
+    
 }
