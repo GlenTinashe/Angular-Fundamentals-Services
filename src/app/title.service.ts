@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { resolve } from 'dns';
 
 @Injectable({
   providedIn: 'root'
@@ -7,15 +6,16 @@ import { resolve } from 'dns';
 export class TitleService {
   title:string = 'Service'
   constructor() {
+    // a promise allows a once off value
     const titlePromise = new Promise(resolve=>{
       setTimeout(()=>{
-        resolve("new Title")
+        resolve('New Title')
       }, 3000)
     })
     titlePromise.then((value:string)=>{
-      this.title = value;
+      this.title = value
     })
-    }
+  }
 
     
 }
