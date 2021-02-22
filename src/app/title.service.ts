@@ -1,4 +1,6 @@
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { interval } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,15 +8,9 @@ import { Injectable } from '@angular/core';
 export class TitleService {
   title:string = 'Service'
   constructor() {
-    // a promise allows a once off value
-    const titlePromise = new Promise(resolve=>{
-      setTimeout(()=>{
-        resolve('New Title')
-      }, 3000)
-    })
-    titlePromise.then((value:string)=>{
-      this.title = value
-    })
+   const number = interval(1000).subscribe(number=>{
+     this.title = `${number}`
+   })
   }
 
     
